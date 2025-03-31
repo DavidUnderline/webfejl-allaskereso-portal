@@ -1,0 +1,41 @@
+<div class="main">
+    <h2>Profile</h2>
+    <div class="info">
+        <div class="name">{{profile.name}}</div>
+        <div class="email">{{profile.email}}</div>
+        @switch(profile.type){
+            @case(1){
+                <div class="resume">{{jobseeker.resume}}</div>
+                <div class="jobs-list-main">
+                    <h2>APPLIED</h2>
+                    <div class="jobs-list-header">
+                        <span>TITLE</span>
+                        <span>CATEGORY</span>
+                        <span>SALARY</span>
+                        <span>DESCRIPTION</span>
+                    </div>
+                    <div class="jobs">
+                        @for(applied of jobs; track $index){
+                            <div>
+                                <div>{{applied.title}}</div>
+                                <div>{{applied.category}}</div>
+                                <div>{{applied.salary}}</div>
+                                <div>{{applied.description}}</div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+            @case(2){
+
+                <!-- <div class="industry">{{company.industry}}</div>
+                <div class="location">{{company.location}}</div>
+                <div>
+                    @for(applied of company; track $index){
+                        <div>{{applied}}</div>
+                    }
+                </div> -->
+            }
+        }
+    </div>
+</div>

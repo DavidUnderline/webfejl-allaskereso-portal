@@ -1,0 +1,40 @@
+<div class="main">
+    <!-- <h2>{{title}}</h2> -->
+    @switch(usertype){
+        @case(2){
+            <div class="job-input-group">
+                <h1>New job</h1>
+                <input type="text" placeholder="New job title..." [(ngModel)] = "newJobTitle">
+        
+                <select [(ngModel)] = "newJobCategory">
+                    <option value="a">a</option>
+                    <option value="b">b</option>
+                    <option value="c">c</option>
+                </select>
+        
+                <input type="text" placeholder="Salary" [(ngModel)] = "newJobSalary">
+                <textarea placeholder="Description..." [(ngModel)] = "newJobDescription"></textarea>
+                <input type="button" (click) = "addJob()" value="Add">
+            </div>
+        }
+    }
+    
+    <div class="jobs-list-main">
+        <div class="jobs-list-header">
+            <span>TITLE</span>
+            <span>CATEGORY</span>
+            <span>SALARY</span>
+            <span>DESCRIPTION</span>
+        </div>
+        <div class="jobs">
+            @for(job of jobs; track trackById(job)){
+                <div>
+                    <div>{{job.title}}</div>
+                    <div>{{job.category}}</div>
+                    <div>{{job.salary}}</div>
+                    <div>{{job.description}}</div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

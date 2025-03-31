@@ -1,0 +1,96 @@
+*{
+    font-family: "Poppins", Aial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #c2c0c0;
+}
+
+.job-input-group, .jobs-list-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+
+    gap: 30px;
+    padding: 20px;
+    width: 500px;
+    background-color: #1b1c1cd8;
+    color:white;
+
+    border-radius: 20px;
+}
+
+.job-input-group>input[type="text"],select,textarea{
+    width: 300px;
+    padding: 5px;
+    margin: 8px 0;
+    border-radius: unset;
+    box-sizing: border-box;
+    font-size: large;
+}
+
+input[type="button"]{
+    width: 100px;
+    background-color: greenyellow;
+    border: unset;
+    font-size: large;
+    opacity: 0.5;
+    &:hover{
+        cursor: pointer;
+	    transform:translateY(-2px);
+        opacity: 0.7;
+    }
+    &:active{
+        opacity: 0.8;
+    }
+}
+
+.jobs-list-main{
+    width: fit-content;
+    background-color: #1b1c1c;
+}
+
+.jobs, .jobs-list-header{
+    display: flex;
+    flex-direction: column;
+}
+
+.jobs-list-header{
+    flex-direction: row;
+    gap:50px;
+    // background-color: rgb(76, 83, 79);
+}
+
+.jobs>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    gap: 50px;
+
+    margin-top: 25px;
+    background-color: rgb(76, 83, 79);
+    box-sizing: border-box;
+}
+
+.jobs>div>div, .jobs-list-header>span{
+    box-sizing: border-box;
+    overflow: hidden;
+    
+    padding: 10px;
+    width: 200px;
+}
+
+.jobs-list-header>span{
+    color:red;
+    border-bottom: 2px solid red;
+}
