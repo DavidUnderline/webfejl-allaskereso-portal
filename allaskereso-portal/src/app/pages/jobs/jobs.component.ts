@@ -4,6 +4,16 @@ import { FormsModule } from '@angular/forms';
 import { Jobs } from './jobs';
 import { DataService } from '../../data.service';
 
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+
+import { BrowserModule } from '@angular/platform-browser';
+
 export interface Job {
   id: number;
   title: string;
@@ -14,14 +24,23 @@ export interface Job {
 
 @Component({
   selector: 'app-jobs',
-  imports: [CommonModule, FormsModule],
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatIconModule
+  ],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss',
   standalone: true
 })
 
 export class JobsComponent implements OnInit{
-  // @Input() title: string = "Jobs";
+  @Input() title: string = "Jobs";
   // @Output() jobAdded = new EventEmitter<Job>();
   constructor(private dataservice: DataService){};
   jobsObj = Jobs;
@@ -34,6 +53,8 @@ export class JobsComponent implements OnInit{
   // Job
   jobs: any[] = [];
   usertype: any = 0;
+
+  selectedFruit: string = '';
 
   ngOnInit(): void {
     this.dataservice.data2$.subscribe(value => {

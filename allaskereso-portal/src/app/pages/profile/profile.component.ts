@@ -1,43 +1,63 @@
 import { Component, OnInit } from '@angular/core';
-import { UserObj } from './constant';
-import { JobSeeker } from './jobseeker/jobseeker.component';
-import { Company } from './company/company.component';
-import { DataService } from '../../data.service';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { UserObj } from './constant';
 import { Jobs } from '../jobs/jobs';
+
+import { DataService } from '../../data.service';
+
+import { FormsModule,FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-profile',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, MatInputModule],
   templateUrl: './profile.component.html',
-  styleUrl: '../jobs/jobs.component.scss',
+  styleUrl: './profile.component.scss',
   standalone: true
 })
 
 export class ProfileComponent implements OnInit{
+  profileform: FormGroup;
+
   UserObj = UserObj
   JobsObj = Jobs
 
-  constructor(private dataservice: DataService, private router: Router){}
-  
-  jobseeker: JobSeeker = {
-    id: 0,
-    name: '',
-    email: '',
-    resume: '',
-    appliedJobs: [0]
-  };
-  
-  company: Company = {
-    id: 0,
-    name: '',
-    email: '',
-    industry: '',
-    location: '',
-    jobs: [0]
-  };
+  constructor(private dataservice: DataService, private router: Router, private formbuilder: FormBuilder){
+    this.profileform = this.formbuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(3)]],
+      resume: ['', [Validators.required, Validators.minLength(3)]],
+    });
+  }
+
+  errormsg() {
+    if (this.profileform.controls['name'].hasError('required') || this.profileform.controls['name'].hasError('name')) {
+      return 'Invalid input';
+    
+    } else if (this.profileform.controls['password'].hasError('required') || this.profileform.controls['password'].hasError('password')) {
+      return 'Invalid input';
+    
+    } else if (this.profileform.controls['email'].hasError('required') || this.profileform.controls['email'].hasError('email')) {
+      return 'Invalid input';
+    
+    } else if (this.profileform.controls['resume'].hasError('required') || this.profileform.controls['email'].hasError('resume')) {
+      return 'Invalid input';
+    }
+
+    return '';
+  }
+
+  // editresponse() {
+  //   return 'edit response';
+  // }
+
+  onsubmit(){
+    console.log("edit submitted")
+  }
 
   profile: any = {};
   jobs: any = [];
@@ -50,16 +70,18 @@ export class ProfileComponent implements OnInit{
       }
 
       if(value.type === 1) {
-        this.jobseeker = value;
         this.jobs = this.getJobs(value.appliedJobs);
 
       } else {
-        this.company = value;
         this.jobs = this.getJobs(value.jobs);
       
       }
 
       this.profile = value;
+      this.profileform.controls['name'].setValue(this.profile.name);
+      this.profileform.controls['email'].setValue(this.profile.email);
+      this.profileform.controls['resume'].setValue(this.profile.resume);
+
       let d : any = [];
       d.push(this.profile.type);
       d.push(this.jobs);
@@ -83,12 +105,5 @@ export class ProfileComponent implements OnInit{
 
   trackById(prof: any): number{
       return prof.id;
-    }
-
-  // selected: number = 0;
-
-  // reload(i: number): void{
-  //   this.selected = i;
-  // }
-
+  }
 }

@@ -1,6 +1,48 @@
 <!-- <router-outlet /> -->
-<app-menu></app-menu>
-<router-outlet></router-outlet>
+
+<!-- <div class="header"> -->
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <app-menu [sidenav]="sidenav"></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="wrapper">
+
+        <div class="header">
+          <mat-toolbar>
+            <button mat-icon-button (click)="togglesidenav(sidenav)" class="menu-toggle">
+              <mat-icon>menu</mat-icon>
+            </button>
+            <nav>
+              <ul>
+                @switch(profile.type){
+                  @case(0){    
+                    <li><a routerLink="/login">LOGIN</a></li>
+                    <li><a routerLink="/register">CREATE ACCOUNT</a></li>
+                  }
+                  @default{
+                    <li><a routerLink="/profile">PROFILE</a></li>
+                  }
+                }
+                <li><a routerLink="/home">HOME</a></li>
+                <li><a routerLink="/jobs">JOBS</a></li>
+              </ul>
+            </nav>
+          </mat-toolbar>
+        </div>
+
+        <div class="main">
+          <router-outlet />
+        </div>
+      </div>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  <!-- </div> -->
+
+    <!-- <div class="main-contents">
+    </div> -->
+
+  <!-- <div class="footer">footer</div> -->
 
 <!-- <app-menu (selectedPage)="changePage($event)"></app-menu> -->
 <!-- @switch(page){

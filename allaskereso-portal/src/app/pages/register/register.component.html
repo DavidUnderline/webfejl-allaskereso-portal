@@ -1,1 +1,20 @@
-<p>register works!</p>
+<div class="wrapper">
+    <div class="main">
+    <h1>Hello Welcome</h1>
+    <h3>Create An Account</h3>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-div">
+            <label for="name">Name</label>
+            <input required  type="text" value="" formControlName="name">
+
+            <label for="email">Email</label>
+            <input required  type="text" value="" formControlName="email">
+  
+            <label for="password">Password</label>
+            <input type="password" value="" formControlName="password">
+  
+            <input type="submit" [disabled]="!registerForm.valid" value="create account">
+          </div>
+      </form>
+  </div>
+</div>

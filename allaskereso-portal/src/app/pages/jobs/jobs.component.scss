@@ -1,96 +1,135 @@
-*{
-    font-family: "Poppins", Aial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    letter-spacing: 2px;
-}
-
-.main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #c2c0c0;
-}
-
-.job-input-group, .jobs-list-main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5px;
-
-    gap: 30px;
-    padding: 20px;
-    width: 500px;
-    background-color: #1b1c1cd8;
-    color:white;
-
-    border-radius: 20px;
-}
-
-.job-input-group>input[type="text"],select,textarea{
-    width: 300px;
-    padding: 5px;
-    margin: 8px 0;
-    border-radius: unset;
-    box-sizing: border-box;
-    font-size: large;
-}
-
-input[type="button"]{
-    width: 100px;
-    background-color: greenyellow;
-    border: unset;
-    font-size: large;
-    opacity: 0.5;
-    &:hover{
-        cursor: pointer;
-	    transform:translateY(-2px);
-        opacity: 0.7;
-    }
-    &:active{
-        opacity: 0.8;
-    }
-}
-
 .jobs-list-main{
-    width: fit-content;
-    background-color: #1b1c1c;
-}
-
-.jobs, .jobs-list-header{
     display: flex;
     flex-direction: column;
-}
-
-.jobs-list-header{
-    flex-direction: row;
-    gap:50px;
-    // background-color: rgb(76, 83, 79);
-}
-
-.jobs>div{
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-    gap: 50px;
-
-    margin-top: 25px;
-    background-color: rgb(76, 83, 79);
-    box-sizing: border-box;
-}
-
-.jobs>div>div, .jobs-list-header>span{
-    box-sizing: border-box;
-    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
     
-    padding: 10px;
-    width: 200px;
+    margin-top: 5px;
+    width: 100%;
+    padding: 20px;
+    border-radius: 5px 40px 5px 20px;
+    // background-color: #1b1c1c;
+    background-color: white;
 }
 
-.jobs-list-header>span{
-    color:red;
-    border-bottom: 2px solid red;
+input, textarea, .mat-option, ::ng-deep .mat-mdc-select-min-line{
+    font-size: large !important;
 }
+
+mat-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: flex-start;
+    // width: 100%;
+    // height: 80%;
+    background-color: #1b1c1c;
+    border: unset;
+    margin-top: 5px;
+    overflow: scroll;
+}
+
+mat-card-content{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    gap: 30px;
+}
+
+mat-form-field{
+    width: 300px !important;
+    padding: 5px !important;
+    margin: 8px 0 !important;
+    border-radius: unset !important;
+    box-sizing: border-box !important;
+}
+
+button{
+    color:white !important;
+    border: 2px solid red !important;
+    background-color: #1b1c1c !important;
+    font-size: x-large !important;
+}
+
+h2{
+    color: whitesmoke;
+}
+
+// mat-form-field > mat-label{
+//     background-color: white;
+// }
+
+// input[type="button"]{
+//     width: 100px;
+//     background-color: greenyellow;
+//     border: unset;
+//     font-size: large;
+//     opacity: 0.5;
+//     &:hover{
+//         cursor: pointer;
+// 	    transform:translateY(-2px);
+//         opacity: 0.7;
+//     }
+//     &:active{
+//         opacity: 0.8;
+//     }
+// }
+
+// .jobs-list-main{
+//     display: flex;
+//     align-items: center;
+//     width: fit-content;
+//     background-color: #1b1c1c;
+// }
+
+// .jobs, .jobs-list-header{
+//     display: flex;
+//     flex-direction: column;
+// }
+
+// .jobs-list-header{
+//     flex-direction: row;
+//     gap:50px;
+// }
+
+// .jobs>div{
+//     display: flex;
+//     flex-direction: row;
+//     justify-content: right;
+//     gap: 50px;
+
+//     margin-top: 25px;
+//     background-color: rgb(76, 83, 79);
+//     box-sizing: border-box;
+//     cursor: pointer;
+
+//     &:hover{
+//         transform: scale(1.02);
+//         box-shadow: 0 0 20px rgba(172, 172, 172, 0.726);
+//       }
+// }
+
+// .jobs>div>div, .jobs-list-header>span{
+//     box-sizing: border-box;
+//     overflow: hidden;
+//     font-size: 15px;
+    
+//     padding: 10px;
+//     width: 200px;
+// }
+
+// .jobs-list-header>span{
+//     color:white;
+//     border-bottom: 2px solid red;
+//     font-size: 15px;
+// }
+
+// .list-jobs{
+//     display: flex;
+//     justify-content: center;
+// }

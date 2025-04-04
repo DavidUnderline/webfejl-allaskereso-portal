@@ -1,41 +1,69 @@
-<div class="main">
+<div class="profile">
     <h2>Profile</h2>
-    <div class="info">
-        <div class="name">{{profile.name}}</div>
-        <div class="email">{{profile.email}}</div>
+    <form [formGroup]="profileform" (ngSubmit)="onsubmit()" class="profile-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Name:</mat-label>
+            <input matInput formControlName="name" (blur)="errormsg()" type="text" required />
+            @if(profileform.controls['name'].invalid && profileform.controls['name'].touched){
+                <mat-error>{{ errormsg() }}</mat-error>
+            }
+            </mat-form-field>
+            
+        <mat-form-field appearance="fill">
+            <mat-label>Email:</mat-label>
+            <input matInput formControlName="email" (blur)="errormsg()" type="text" required />
+            @if(profileform.controls['email'].invalid && profileform.controls['email'].touched){
+                <mat-error>{{ errormsg() }}</mat-error>
+            }
+        </mat-form-field>
+
         @switch(profile.type){
             @case(1){
-                <div class="resume">{{jobseeker.resume}}</div>
-                <div class="jobs-list-main">
-                    <h2>APPLIED</h2>
-                    <div class="jobs-list-header">
-                        <span>TITLE</span>
-                        <span>CATEGORY</span>
-                        <span>SALARY</span>
-                        <span>DESCRIPTION</span>
-                    </div>
-                    <div class="jobs">
-                        @for(applied of jobs; track $index){
-                            <div>
-                                <div>{{applied.title}}</div>
-                                <div>{{applied.category}}</div>
-                                <div>{{applied.salary}}</div>
-                                <div>{{applied.description}}</div>
-                            </div>
-                        }
-                    </div>
-                </div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Resume:</mat-label>
+                    <input matInput formControlName="resume" (blur)="errormsg()" type="text" required />
+                    @if(profileform.controls['resume'].invalid && profileform.controls['resume'].touched){
+                        <mat-error>{{ errormsg() }}</mat-error>
+                    }
+                </mat-form-field>
             }
             @case(2){
-
-                <!-- <div class="industry">{{company.industry}}</div>
-                <div class="location">{{company.location}}</div>
-                <div>
-                    @for(applied of company; track $index){
-                        <div>{{applied}}</div>
-                    }
-                </div> -->
+                
             }
         }
+    </form>
     </div>
-</div>
+    @switch(profile.type){
+    @case(1){
+    <div class="list-jobs">
+        <div class="jobs-list-main">
+            <h2>APPLIED</h2>
+            <div class="jobs-list-header">
+                <span>TITLE</span>
+                <span>CATEGORY</span>
+                <span>SALARY</span>
+                <span>DESCRIPTION</span>
+            </div>
+            <div class="jobs">
+                @for(applied of jobs; track $index){
+                    <div>
+                        <div>{{applied.title}}</div>
+                        <div>{{applied.category}}</div>
+                        <div>{{applied.salary}}</div>
+                        <div>{{applied.description}}</div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    }
+    @case(2){
+    <!-- <div class="industry">{{company.industry}}</div>
+    <div class="location">{{company.location}}</div>
+    <div>
+        @for(applied of company; track $index){
+            <div>{{applied}}</div>
+        }
+    </div> -->
+    }
+}

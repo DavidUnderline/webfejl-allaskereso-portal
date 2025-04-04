@@ -1,16 +1,25 @@
-<div>
-    <h1>Hi Welcome Back</h1>
-     <h3>Login Here</h3>
-        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-            <div>
-              <label for="email">Email</label>
-              <input required  type="text" value="" formControlName="email">
-    
-              <label for="password">Password</label>
-              <input type="password" value="" formControlName="password">
-    
-              <input type="submit" [disabled]="!loginForm.valid" value="Login">
-            </div>
-        </form>
-        <!-- <span>Don't have an account? <a routerLink="/signUp">signUp</a></span> -->
-  </div>
+  <h1>Hi Welcome Back</h1>
+  <h3>Login Here</h3>
+  <form (ngSubmit)="onSubmit()">
+        <div class="form-div">
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput [formControl]="email" (blur)="updateerror()" type="text" value="" required />
+            @if(email.invalid){
+                <mat-error>{{errormsg()}}</mat-error>
+            }
+          </mat-form-field>
+          
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input matInput [formControl]="password" (blur)="updateerror()" type="password" value="" />
+            @if(password.invalid){
+              <mat-error>{{errormsg()}}</mat-error>
+            }
+            </mat-form-field>
+            <button mat-stroked-button type="submit">Login</button>
+            @if(!temp){
+              <mat-error>{{res()}}</mat-error>
+            }
+        </div>
+    </form>

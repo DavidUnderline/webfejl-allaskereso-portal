@@ -1,28 +1,31 @@
-<nav>
-    <ul>
+<mat-nav-list>
         @switch(profile.type){
             @case(0){        
-                <a routerLink="/login" >
-                    <label for="login" for="login">LOGIN</label>
+                <a mat-list-item routerLink="/login" routerLinkActive="active-list-item" (click)="closemenu()">
+                    <mat-icon matListItemIcon>key</mat-icon>
+                    <label matListItemTitle>LOGIN</label>
                 </a>
-                <a routerLink="/register">
-                    <label for="register" for="register">REGISTER</label>
+                <a mat-list-item routerLink="/register" routerLinkActive="active-list-item" (click)="closemenu()">
+                    <mat-icon matListItemIcon>add-circle</mat-icon>
+                    <label matListItemTitle>CREATE ACCOUNT</label>
                 </a>
             }
             @default{
-                <a routerLink="/profile">
-                    <label for="profile" for="profile">PROFILE</label>
+                <a mat-list-item routerLink="/profile" routerLinkActive="active-list-item" (click)="closemenu()">
+                    <mat-icon matListItemIcon>person</mat-icon>
+                    <label matListItemTitle>PROFILE</label>
                 </a>
             }
         }
-        <a id="home" routerLink="/home">
-            <label for="home" for="home">HOME</label>
+        <a mat-list-item routerLink="/home" routerLinkActive="active-list-item" (click)="closemenu()">
+            <mat-icon matListItemIcon>home</mat-icon>
+            <label matListItemTitle>HOME</label>
         </a>
-        <a routerLink="/jobs">
-            <label for="jobs" for="jobs">JOBS</label>
+        <a mat-list-item routerLink="/jobs" routerLinkActive="active-list-item" (click)="closemenu()">
+            <mat-icon matListItemIcon>work</mat-icon>
+            <label matListItemTitle>JOBS</label>
         </a>
-    </ul>
-</nav>
+</mat-nav-list>
 <!-- <nav>
     <ul (click)="menuSwitcher($event)">
         <li value="home">HOME</li>

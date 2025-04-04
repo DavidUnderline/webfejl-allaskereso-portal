@@ -1,19 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
-// *{
-    // box-sizing: border-box;
-// }
-
+*{
+    box-sizing: border-box;
+    font-family: "Poppins", Aial, sans-serif;
+    font-size: 11px;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+    
 html, body {
-    // background-color: rgb(41, 39, 39);
     width: 100%;
     height: 100%;
 }
 
 body{
-    // display: flex;
-//     flex-direction: column;
-    // justify-content: center;
-//     align-items: center;
-    background-color: rgb(8, 104, 8);
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: black;
+}
+
+app-root, .wrapper{
+    min-width: 100% !important;
+    min-height: 100% !important;
+}
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(163, 58, 17);
+}
+
+.main{
+    flex:1;
+    position: relative;
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+h1,h2,h3{
+    font-size: x-large;
+    text-align: center;
+}
+
+.form-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+form{
+    display: flex;
+    justify-content: center;
+    // gap: 40px;
+    background-color: #1b1c1c;
+    padding: 30px;
+}
+
+input[type="text"]{
+    font-size: 15px !important;
+    width: 200px !important;
+}
+
+mat-label{
+    font-size: 15px !important;
+}
+
+.mdc-button, .mdc-button__label{
+    font-size: 15px !important;
+}
+
+mat-error{
+    color:white !important;
+}
+
+button{
+    color:white !important;
+    border: 2px solid red !important;
+    background-color: #1b1c1c;
+    font-size: x-large !important;
 }
