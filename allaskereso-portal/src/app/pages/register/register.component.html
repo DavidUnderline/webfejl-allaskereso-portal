@@ -1,20 +1,43 @@
-<div class="wrapper">
-    <div class="main">
-    <h1>Hello Welcome</h1>
-    <h3>Create An Account</h3>
-      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-          <div class="form-div">
-            <label for="name">Name</label>
-            <input required  type="text" value="" formControlName="name">
+<h1>Hello Welcome</h1>
+<h3>Create An Account</h3>
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-div">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput required  type="text" value="" formControlName="name" (blur)="updateerror('name')" />
+        <mat-icon matSuffix>person</mat-icon>
+          @if(registerForm.get('name')?.invalid){
+              <mat-error>{{errormsg()}}</mat-error>
+          }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput required  type="text" value="" formControlName="email" (blur)="updateerror('email')" />
+        <mat-icon matSuffix>email</mat-icon>  
+        @if(registerForm.get('email')?.invalid){
+              <mat-error>{{errormsg()}}</mat-error>
+          }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <mat-icon matSuffix>lock</mat-icon>
+        <input matInput required  type="text" value="" formControlName="password" (blur)="updateerror('password')" />
+        @if(registerForm.get('password')?.invalid){
+          <mat-error>{{errormsg()}}</mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirm password</mat-label>
+        <mat-icon matSuffix>lock</mat-icon>
+        <input matInput required  type="text" value="" formControlName="passwordRe" (blur)="updateerror('passwordRe')" />
+          @if(registerForm.get('password')?.invalid){
+              <mat-error>{{errormsg()}}</mat-error>
+          }
+      </mat-form-field>
 
-            <label for="email">Email</label>
-            <input required  type="text" value="" formControlName="email">
-  
-            <label for="password">Password</label>
-            <input type="password" value="" formControlName="password">
-  
-            <input type="submit" [disabled]="!registerForm.valid" value="create account">
-          </div>
-      </form>
-  </div>
-</div>
+      <button mat-stroked-button [disabled]="!registerForm.valid" type="submit">Sign up</button>
+          <!-- @if(!temp){
+            <mat-error>{{res()}}</mat-error>
+          } -->
+    </div>
+</form>

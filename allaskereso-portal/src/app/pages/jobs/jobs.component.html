@@ -1,71 +1,98 @@
-<div class="wrapper">
-    <div class="main">
-        <!-- <div class="profile"> -->
-        @switch(usertype){
-            @case(2){
-                <!-- <form class="profile-form"> -->
-                <mat-card>
-                    <!-- <div class="job-input-group"> -->
-                    <mat-card-header>
-                        <mat-card-title>
-                            <h2>{{title}}</h2>
-                        </mat-card-title>
-                    </mat-card-header>
+<div class="main">
+    @switch(usertype){
+        @case(2){
+            <mat-card class="add-jobb">
+                <mat-card-header>
+                    <mat-card-title>
+                        <h2>{{title}}</h2>
+                    </mat-card-title>
+                </mat-card-header>
 
-                    <mat-card-content>
-                            <mat-form-field >
-                                <mat-label>New job title...</mat-label>
-                                <input matInput [(ngModel)]="newJobTitle" type="text">
-                            </mat-form-field>
-                            
-                            <mat-form-field >
-                                <mat-label>Job Category...</mat-label>
-                                <mat-select [(ngModel)]="newJobCategory" class="mat-select">
-                                    <mat-option class="mat-option" value="a">a</mat-option>
-                                    <mat-option class="mat-option" value="b">b</mat-option>
-                                    <mat-option class="mat-option" value="c">c</mat-option>
-                                </mat-select>
-                            </mat-form-field>
+                <mat-card-content>
+                        <mat-form-field >
+                            <mat-label>New job title...</mat-label>
+                            <input matInput [(ngModel)]="newJobTitle" type="text">
+                        </mat-form-field>
+                        
+                        <mat-form-field >
+                            <mat-label>Job Category...</mat-label>
+                            <mat-select [(ngModel)]="newJobCategory" class="mat-select">
+                                <mat-option class="mat-option" value="a">a</mat-option>
+                                <mat-option class="mat-option" value="b">b</mat-option>
+                                <mat-option class="mat-option" value="c">c</mat-option>
+                            </mat-select>
+                        </mat-form-field>
 
-                            <mat-form-field >
-                                <mat-label>Salary...</mat-label>
-                                <input matInput [(ngModel)]="newJobSalary" type="text">
-                            </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Salary...</mat-label>
+                            <input matInput [(ngModel)]="newJobSalary" type="number">
+                        </mat-form-field>
 
-                            <mat-form-field >
-                                <mat-label>Description...</mat-label>
-                                <textarea matInput [(ngModel)]="newJobDescription" rows="20" cols="50"></textarea>
-                            </mat-form-field>
+                        <mat-form-field >
+                            <mat-label>Description...</mat-label>
+                            <textarea matInput [(ngModel)]="newJobDescription" rows="20" cols="50"></textarea>
+                        </mat-form-field>
 
-                            <button mat-flat-button (click)="addJob()">Add</button>
-                        </mat-card-content>
-                    <!-- </div> -->
-                </mat-card>
-                <!-- </form> -->
-            }
-            <!-- 
-            @default{ -->
-                <!-- <div class="jobs-list-main">
+                        <button mat-flat-button (click)="addJob()">Add</button>
+                    </mat-card-content>
+            </mat-card>
+
+            <mat-card class="company-jobs">
+                <mat-card-header>
+                    <mat-card-title></mat-card-title>
                     <div class="jobs-list-header">
                         <span>TITLE</span>
                         <span>CATEGORY</span>
                         <span>SALARY</span>
-                        <span>DESCRIPTION</span>
                     </div>
-                    <div class="jobs">
-                        @for(job of jobs; track trackById(job)){
-                            <div>
-                                <div>{{job.title}}</div>
-                                <div>{{job.category}}</div>
-                                <div>{{job.salary}}</div>
-                                <div>{{job.description}}</div>
-                            </div>
-                        }
-                    </div>
-                </div> 
-            }
-            -->
+                </mat-card-header>
+
+                <mat-card-content class="jobs">
+                    @for(job of jobs; track trackById(job)){
+                        <app-job [job]="job" (jobDeleted)="delete($event)"></app-job>
+                    }
+                </mat-card-content>
+            </mat-card>    
         }
-        <!-- </div> -->
-    </div>
+        
+        @default{
+            <!-- <div class="jobs-list-main"> -->
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <div mat-card-avatar class="example-header-image"></div>
+                    <mat-card-title>Company Name</mat-card-title>
+                    <mat-card-subtitle>Job Title</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed mollis mi, in venenatis enim. Vestibulum turpis sem, rutrum sed nulla vehicula, tincidunt aliquam augue. Etiam et commodo mi. Maecenas quis leo posuere, eleifend justo quis, lobortis nibh. Donec tristique convallis velit sit amet sollicitudin. Maecenas dapibus velit nec arcu condimentum, nec aliquet nulla lobortis. Integer fringilla lectus vel felis imperdiet, id rutrum mi scelerisque. Maecenas turpis orci, pharetra fringilla eros sed, congue ullamcorper orci. Proin varius tellus lectus, et porta enim volutpat ac. Sed dapibus orci id dapibus tempor. Morbi non gravida tellus. Fusce tortor neque, ornare dapibus erat.
+                    </p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>APPLY</button>
+                    <button mat-button>OPEN</button>
+                </mat-card-actions>
+                </mat-card>
+            <!-- </div>  -->
+
+                <!--
+                <div class="jobs-list-header">
+                    <span>TITLE</span>
+                    <span>CATEGORY</span>
+                    <span>SALARY</span>
+                    <span>DESCRIPTION</span>
+                </div>
+                <div class="jobs">
+                    @for(job of jobs; track trackById(job)){
+                        <div>
+                            <div>{{job.title}}</div>
+                            <div>{{job.category}}</div>
+                            <div>{{job.salary}}</div>
+                            <div>{{job.description}}</div>
+                        </div>
+                    }
+                </div>
+        -->
+        }
+    }
 </div>

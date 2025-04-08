@@ -1,9 +1,7 @@
 import { Component, EventEmitter, OnInit, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Jobs } from './jobs';
+import { Job } from './job/job.component';
 import { DataService } from '../../data.service';
-
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,16 +9,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-
-import { BrowserModule } from '@angular/platform-browser';
-
-export interface Job {
-  id: number;
-  title: string;
-  category: 'a' | 'b' | 'c';
-  salary: number;
-  description: string;
-}
+import { Jobs } from './jobs';
+import { JobComponent } from './job/job.component';
+// import { CommonModule } from '@angular/common';
+// import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-jobs',
@@ -32,16 +24,18 @@ export interface Job {
     MatSelectModule,
     MatButtonModule,
     MatCheckboxModule,
-    MatIconModule
+    MatIconModule,
+    JobComponent,
   ],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss',
-  standalone: true
+  standalone: true,
 })
 
 export class JobsComponent implements OnInit{
   @Input() title: string = "Jobs";
-  // @Output() jobAdded = new EventEmitter<Job>();
+  @Output() jobAdded = new EventEmitter<Job>();
+
   constructor(private dataservice: DataService){};
   jobsObj = Jobs;
 
@@ -53,8 +47,6 @@ export class JobsComponent implements OnInit{
   // Job
   jobs: any[] = [];
   usertype: any = 0;
-
-  selectedFruit: string = '';
 
   ngOnInit(): void {
     this.dataservice.data2$.subscribe(value => {
@@ -87,12 +79,17 @@ export class JobsComponent implements OnInit{
     };
 
       this.jobs.push(newJob);
-      // this.jobAdded.emit(newJob);
+      this.jobAdded.emit(newJob);
 
       this.newJobTitle = '';
       this.newJobSalary = 0;
       this.newJobDescription = "";
     }
+  }
+
+  delete(job: Job): void{
+    this.jobs = this.jobs.filter(i => i !== job);
+    console.log("parent --> deleted")
   }
 
   trackById(job: Job): number{

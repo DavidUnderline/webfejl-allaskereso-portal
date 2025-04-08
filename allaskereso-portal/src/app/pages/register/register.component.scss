@@ -1,0 +1,22 @@
+label{
+    position: absolute !important;
+    transform:translateY(-25px) !important;
+    color:white !important;
+    font-size: large !important;
+}
+
+input:empty + label{
+    color: unset !important;
+    transform: unset !important;
+}
+
+.form-div>div{
+    position: relative;
+    display:flex;
+    flex-direction: column;
+}
+
+mat-error{
+    margin-top: 10px;
+    text-align: center;
+}

@@ -33,6 +33,11 @@ export class MenuComponent implements OnInit{
       this.sidenav.close();
   }
 
+  logout(){
+    this.dataservice.update(null);
+    this.dataservice.update2(null);
+  }
+
   // menuSwitcher(page: any){
   //   this.selectedPage.emit(page);
   // }

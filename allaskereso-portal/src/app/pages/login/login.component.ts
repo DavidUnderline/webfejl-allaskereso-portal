@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../data.service';
-import { UserObj } from '../profile/constant';
+import { UserObj } from '../profile/users';
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,6 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 @Component({
   selector: 'app-login',
   imports: [
-    CommonModule,
     ReactiveFormsModule,MatFormFieldModule, FormsModule,
     MatButtonModule,MatInputModule,MatIconModule,
   ],

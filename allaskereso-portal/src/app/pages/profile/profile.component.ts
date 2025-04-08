@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { UserObj } from './constant';
+import { UserObj } from './users';
 import { Jobs } from '../jobs/jobs';
 
 import { DataService } from '../../data.service';

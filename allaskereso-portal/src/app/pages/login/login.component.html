@@ -5,6 +5,7 @@
           <mat-form-field appearance="fill">
             <mat-label>Email</mat-label>
             <input matInput [formControl]="email" (blur)="updateerror()" type="text" value="" required />
+            <mat-icon matSuffix>email</mat-icon>
             @if(email.invalid){
                 <mat-error>{{errormsg()}}</mat-error>
             }
@@ -12,7 +13,8 @@
           
           <mat-form-field appearance="fill">
             <mat-label>Password</mat-label>
-            <input matInput [formControl]="password" (blur)="updateerror()" type="password" value="" />
+            <input matInput [formControl]="password" (blur)="updateerror()" type="password" value="" required />
+            <mat-icon matSuffix>lock</mat-icon>
             @if(password.invalid){
               <mat-error>{{errormsg()}}</mat-error>
             }

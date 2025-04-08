@@ -35,4 +35,9 @@ export class AppComponent {
           else this.profile = value;
         });
     }
+
+    logout(){
+      this.dataservice.update(null);
+      this.dataservice.update2(null);
+    }
 }
