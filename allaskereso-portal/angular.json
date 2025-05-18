@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "allaskereso-portal": {
+    "webfejl-7977f": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/allaskereso-portal",
+            "outputPath": "dist/webfejl-7977f",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -42,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1100kB",
+                  "maximumError": "1.1MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -65,10 +65,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "allaskereso-portal:build:production"
+              "buildTarget": "webfejl-7977f:build:production"
             },
             "development": {
-              "buildTarget": "allaskereso-portal:build:development"
+              "buildTarget": "webfejl-7977f:build:development"
             }
           },
           "defaultConfiguration": "development"

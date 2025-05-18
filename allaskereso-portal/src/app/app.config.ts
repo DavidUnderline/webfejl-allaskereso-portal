@@ -10,13 +10,13 @@ export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
     provideRouter(routes), 
     provideFirebaseApp(() => initializeApp({ 
-      projectId: "webfejl-allaskereso-portal", 
-      appId: "1:841692814098:web:add1e85196c21f66e5f1cb", 
-      storageBucket: "webfejl-allaskereso-portal.firebasestorage.app", 
-      apiKey: "AIzaSyBRLZr978xLiet5cxDctSCWqRo90cZJASs", 
-      authDomain: "webfejl-allaskereso-portal.firebaseapp.com", 
-      messagingSenderId: "841692814098" })), 
+      projectId: "webfejl-7977f", 
+      appId: "1:968397338432:web:c49186eef3af7ed31f6ca5", 
+      storageBucket: "webfejl-7977f.firebasestorage.app", 
+      apiKey: "AIzaSyCPbWx9lYWCo0xPmXChwAhBBvDt3n8jeHQ", 
+      authDomain: "webfejl-7977f.firebaseapp.com",
+      messagingSenderId: "968397338432" })), 
       provideAuth(() => getAuth()), 
-      provideFirestore(() => getFirestore())
+      provideFirestore(() => getFirestore()), provideFirebaseApp(() => initializeApp({ projectId: "webfejl-7977f", appId: "1:968397338432:web:c49186eef3af7ed31f6ca5", storageBucket: "webfejl-7977f.firebasestorage.app", apiKey: "AIzaSyCPbWx9lYWCo0xPmXChwAhBBvDt3n8jeHQ", authDomain: "webfejl-7977f.firebaseapp.com", messagingSenderId: "968397338432" })), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())
     ]
 };
