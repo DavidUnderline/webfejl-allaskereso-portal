@@ -17,24 +17,27 @@
             }
         </mat-form-field>
 
-        @switch(profile.type){
-            @case(1){
+        @switch(profile.iscompany){
+            @case(false){
                 <mat-form-field appearance="fill">
-                    <mat-label>Resume:</mat-label>
-                    <input matInput formControlName="resume" (blur)="errormsg()" type="text" required />
-                    @if(profileform.controls['resume'].invalid && profileform.controls['resume'].touched){
+                    <mat-label>CV:</mat-label>
+                    <input matInput formControlName="cv" (blur)="errormsg()" type="text" required />
+                    @if(profileform.controls['cv'].invalid && profileform.controls['cv'].touched){
                         <mat-error>{{ errormsg() }}</mat-error>
                     }
                 </mat-form-field>
             }
-            @case(2){
-                
-            }
         }
+
+        <button mat-icon-button type="submit">
+            Submit changes
+            <mat-icon matSuffix>edit</mat-icon>
+        </button>
     </form>
     </div>
-    @switch(profile.type){
-    @case(1){
+    
+    <!-- @switch(profile.iscompany){
+    @case(0){
     <div class="list-jobs">
         <div class="jobs-list-main">
             <h2>APPLIED</h2>
@@ -57,7 +60,7 @@
         </div>
     </div>
     }
-    @case(2){
+    @case(2){ -->
     <!-- <div class="industry">{{company.industry}}</div>
     <div class="location">{{company.location}}</div>
     <div>
@@ -65,5 +68,5 @@
             <div>{{applied}}</div>
         }
     </div> -->
-    }
-}
+    <!-- } -->
+<!-- } -->

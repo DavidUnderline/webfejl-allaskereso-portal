@@ -1,6 +1,6 @@
 <div class="job-attr">{{job.title}}</div>
-<div class="job-attr">{{job.category}}</div>
-<div class="job-attr">{{job.salary | currencypipe}}</div>
+<div class="job-attr">{{job.category_id}}</div>
+<div class="job-attr">{{job.salary | companycurrency}}</div>
 <mat-card-actions>
         <mat-icon (click)="delete()">delete</mat-icon>
 </mat-card-actions>

@@ -1,12 +1,14 @@
 import { Component, Input } from '@angular/core';
 
 export interface Company {
-  id: number;
+  id: string;
   name: string;
   email: string;
+  // password: string;
   industry: string;
   location: string;
   jobs: number[];
+  iscompany: string;
 }
 
 @Component({

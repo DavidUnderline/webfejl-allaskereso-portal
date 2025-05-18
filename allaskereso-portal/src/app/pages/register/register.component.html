@@ -1,7 +1,7 @@
 <h1>Hello Welcome</h1>
 <h3>Create An Account</h3>
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="form-div">
+  <div class="form-div">
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput required  type="text" value="" formControlName="name" (blur)="updateerror('name')" />
@@ -21,7 +21,7 @@
       <mat-form-field>
         <mat-label>Password</mat-label>
         <mat-icon matSuffix>lock</mat-icon>
-        <input matInput required  type="text" value="" formControlName="password" (blur)="updateerror('password')" />
+        <input matInput required  type="password" value="" formControlName="password" (blur)="updateerror('password')" />
         @if(registerForm.get('password')?.invalid){
           <mat-error>{{errormsg()}}</mat-error>
         }
@@ -29,15 +29,21 @@
       <mat-form-field>
         <mat-label>Confirm password</mat-label>
         <mat-icon matSuffix>lock</mat-icon>
-        <input matInput required  type="text" value="" formControlName="passwordRe" (blur)="updateerror('passwordRe')" />
+        <input matInput required  type="password" value="" formControlName="passwordRe" (blur)="updateerror('passwordRe')" />
           @if(registerForm.get('password')?.invalid){
               <mat-error>{{errormsg()}}</mat-error>
           }
       </mat-form-field>
 
+      <!-- <section width="100%"> -->
+        <label for="iscompany">Register as Company
+          <input type="checkbox" id="iscompany" formControlName="iscompany" style="color:white !important"/>
+        </label>
+      <!-- </section> -->
+
       <button mat-stroked-button [disabled]="!registerForm.valid" type="submit">Sign up</button>
-          <!-- @if(!temp){
+          @if(!temp){
             <mat-error>{{res()}}</mat-error>
-          } -->
+          }
     </div>
 </form>

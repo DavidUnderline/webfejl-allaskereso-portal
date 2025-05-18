@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 
 export interface JobSeeker {
-  id: number;
+  id: string;
   name: string;
   email: string;
+  // password: string;
   resume: string;
-  appliedJobs: number[];
+  jobs: number[];
+  iscompany: string;
 }
 
 @Component({

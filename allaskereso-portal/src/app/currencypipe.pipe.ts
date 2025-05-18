@@ -13,8 +13,13 @@ export class CurrencypipePipe implements PipeTransform {
     if (value === null || value === undefined) {
       return null;
     }
-    
-    return formatCurrency(value, this.locale, 'Ft', 'HUF', '1.0-0');
+
+    const formattedValue = formatCurrency(value, this.locale, 'HUF', 'HUF', '1.0-0');
+
+    const parts = formattedValue.split('F');
+    const p = formattedValue.substring(0, 3);
+
+    return `${parts[1]} ${p}`;  
   }
 
 }

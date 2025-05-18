@@ -1,6 +1,6 @@
 <div class="main">
     @switch(usertype){
-        @case(2){
+        @case(1){
             <mat-card class="add-jobb">
                 <mat-card-header>
                     <mat-card-title>
@@ -48,32 +48,32 @@
                 </mat-card-header>
 
                 <mat-card-content class="jobs">
-                    @for(job of jobs; track trackById(job)){
+                    @for(job of jobs; track $index){
                         <app-job [job]="job" (jobDeleted)="delete($event)"></app-job>
                     }
                 </mat-card-content>
             </mat-card>    
         }
         
-        @default{
-            <!-- <div class="jobs-list-main"> -->
-            <mat-card class="example-card" appearance="outlined">
-                <mat-card-header>
-                    <div mat-card-avatar class="example-header-image"></div>
-                    <mat-card-title>Company Name</mat-card-title>
-                    <mat-card-subtitle>Job Title</mat-card-subtitle>
-                </mat-card-header>
-                <mat-card-content>
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed mollis mi, in venenatis enim. Vestibulum turpis sem, rutrum sed nulla vehicula, tincidunt aliquam augue. Etiam et commodo mi. Maecenas quis leo posuere, eleifend justo quis, lobortis nibh. Donec tristique convallis velit sit amet sollicitudin. Maecenas dapibus velit nec arcu condimentum, nec aliquet nulla lobortis. Integer fringilla lectus vel felis imperdiet, id rutrum mi scelerisque. Maecenas turpis orci, pharetra fringilla eros sed, congue ullamcorper orci. Proin varius tellus lectus, et porta enim volutpat ac. Sed dapibus orci id dapibus tempor. Morbi non gravida tellus. Fusce tortor neque, ornare dapibus erat.
-                    </p>
-                </mat-card-content>
-                <mat-card-actions>
-                    <button mat-button>APPLY</button>
-                    <button mat-button>OPEN</button>
-                </mat-card-actions>
-                </mat-card>
-            <!-- </div>  -->
+        @case(0){
+            <div class="jobs-list-main">
+                @for(job of jobs; track $index){
+                    <mat-card class="example-card" appearance="outlined">
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>{{job.title}}</mat-card-title>
+                            <mat-card-subtitle>{{job.companyname}}</mat-card-subtitle>
+                            <mat-card-subtitle>Salary: {{job.salary | currencypipe}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <p>{{job.description}}</p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <button mat-button>APPLY</button>
+                        </mat-card-actions>
+                    </mat-card>
+                }
+            </div> 
 
                 <!--
                 <div class="jobs-list-header">

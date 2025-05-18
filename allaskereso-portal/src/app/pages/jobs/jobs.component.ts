@@ -9,10 +9,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
-import { Jobs } from './jobs';
 import { JobComponent } from './job/job.component';
-// import { CommonModule } from '@angular/common';
-// import { BrowserModule } from '@angular/platform-browser';
+import { JobsService } from '../../services/jobs.service';
+import { Subscription } from 'rxjs';
+import { CurrencypipePipe } from '../../currencypipe.pipe';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-jobs',
@@ -26,6 +27,7 @@ import { JobComponent } from './job/job.component';
     MatCheckboxModule,
     MatIconModule,
     JobComponent,
+    CurrencypipePipe
   ],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss',
@@ -36,8 +38,8 @@ export class JobsComponent implements OnInit{
   @Input() title: string = "Jobs";
   @Output() jobAdded = new EventEmitter<Job>();
 
-  constructor(private dataservice: DataService){};
-  jobsObj = Jobs;
+  constructor(private loginservice: LoginService, private dataservice: DataService, private jobservice: JobsService){};
+  // jobsObj = Jobs;
 
   newJobTitle: string = "";
   newJobCategory: 'a' | 'b' | 'c' = 'c';
@@ -47,52 +49,83 @@ export class JobsComponent implements OnInit{
   // Job
   jobs: any[] = [];
   usertype: any = 0;
+  private subscription: Subscription | null = null;
 
   ngOnInit(): void {
-    this.dataservice.data2$.subscribe(value => {
-      if(value === null) {
-        this.listJobs(this.jobsObj)
-        return;
-      }
+    if(localStorage.getItem("iscompany") === "true") {
+      console.log("company");
+      this.usertype = 1;
+      this.getuserjobs();
+      return;
+    }
 
-      this.usertype = value[0];
-
-      this.listJobs(value[1]);
-    });
-  }
-
-  listJobs(data: any): any{
-    data = this.jobsObj.map(job => {
-      this.jobs.push(job);
-      return { ...job };
-    });
+    this.usertype = 0;
+    this.fetchjobs();
   }
 
   addJob(): void{
-    if(this.newJobTitle.trim()){
-      const newJob: Job = {
-        id: this.jobs.length+1,
-        title: this.newJobTitle.trim(),
-        category: this.newJobCategory,
-        salary: this.newJobSalary,
-        description: this.newJobDescription
+    if(!this.newJobTitle.trim()){
+      return;
     };
+    
+    const newJob: Job = {
+      title: this.newJobTitle.trim(),
+      company_id: localStorage.getItem("id") || "",
+      salary: this.newJobSalary,
+      description: this.newJobDescription,
+      category_id: this.newJobCategory
+    };
+      // this.jobs.push(newJob);
+      this.jobservice.addjob(newJob)
+      .then(() => {
+        this.jobs.push(newJob);
 
-      this.jobs.push(newJob);
-      this.jobAdded.emit(newJob);
+      }).catch((err) => {
+        console.log(err);
+      });
 
       this.newJobTitle = '';
       this.newJobSalary = 0;
       this.newJobDescription = "";
-    }
   }
 
   delete(job: Job): void{
+    console.log(job)
+    const res = this.jobservice.deletejob(job);
+    
+    if(!res) return;
+
     this.jobs = this.jobs.filter(i => i !== job);
     console.log("parent --> deleted")
   }
 
-  trackById(job: Job): number{
-    return job.id;
+  getuserjobs(){
+    this.jobservice.fetchuserjobsdata().subscribe({
+      next: (data) => {
+        console.log(data)
+        this.jobs = data;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  fetchjobs(){
+    this.jobservice.getJobs().subscribe({
+      next: (data) => {
+        this.jobs = data;
+        console.log("--- JOBS ---\n", this.jobs);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
+
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

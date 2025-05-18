@@ -23,3 +23,10 @@
 h2{
     color: whitesmoke;
 }
+
+::ng-deep .my-snackbar-class{
+    position: absolute !important;
+    top: 80px !important;
+    right: 0px !important;
+    left: 0px !important;
+}

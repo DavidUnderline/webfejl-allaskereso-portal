@@ -10,7 +10,7 @@
     padding: 20px;
     border-radius: 5px 40px 5px 20px;
     // background-color: #1b1c1c;
-    background-color: white;
+    // background-color: white;
 }
 
 input, textarea, .mat-option, ::ng-deep .mat-mdc-select-min-line{
@@ -44,14 +44,13 @@ mat-card{
 }
 
 mat-card-content{
-    // margin-top: 5px;
     display: flex;
     flex-direction: column;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // width: 30%;
-    // gap: 5px;
+    padding: 20px;
+    text-align: justify;
 }
 
 mat-form-field{
@@ -113,6 +112,11 @@ app-job{
     }
 }
 
+mat-card-actions{
+    position: absolute;
+    right: 0;
+}
+
 mat-card-actions > button{
     color:red;
     
@@ -146,6 +150,9 @@ mat-card-actions > button{
 .example-card {
     max-width: 800px !important;
     max-height: 300px !important;
+    min-width: 800px !important;
+    min-height: 300px !important;
+    overflow-y: scroll !important;
   }
   
 .example-header-image {

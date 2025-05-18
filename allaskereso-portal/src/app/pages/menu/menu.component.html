@@ -1,6 +1,7 @@
 <mat-nav-list>
-        @switch(profile.type){
-            @case(0){        
+        @switch(profile){
+            @case(0){
+                <p>ASD</p>     
                 <a mat-list-item routerLink="/login" routerLinkActive="active-list-item" (click)="closemenu()">
                     <mat-icon matListItemIcon>key</mat-icon>
                     <label matListItemTitle>LOGIN</label>

@@ -4,6 +4,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { DataService } from '../../data.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-menu',
@@ -18,14 +19,14 @@ export class MenuComponent implements OnInit{
   @Input() sidenav!: MatSidenav;
   // @Output() selectedPage: EventEmitter<string> = new EventEmitter();
   
-  constructor(private dataservice: DataService){};
-  profile: any = {};
+  constructor(private loginservice: LoginService, private dataservice: DataService){};
+  profile: any = 0;
 
   ngOnInit(): void {
-      this.dataservice.data1$.subscribe(value => {
-        if(value === null) this.profile.type = 0;
-        else this.profile = value;
-      });
+     this.loginservice.isloggedin().subscribe(value => {
+        if(value != null) this.profile = 1;
+        else this.profile = 0;
+      })
   }
 
   closemenu(): any{
@@ -34,8 +35,12 @@ export class MenuComponent implements OnInit{
   }
 
   logout(){
-    this.dataservice.update(null);
-    this.dataservice.update2(null);
+    this.loginservice.signout().then(() => {
+      this.closemenu(),
+      // this.loginService.updatelogstatus(false),
+      // this.dataservice.update(null),
+      this.dataservice.update2(null)
+    });
   }
 
   // menuSwitcher(page: any){
